@@ -106,13 +106,13 @@ public class GameEngine {
         score += counterForScore;
     }
 
-    public void paintGame(Graphics g, int fieldWidth, int fieldHeight, int blockWidth, int blockHeight) { // draw field and blocks on the ground
+    public void paintGame(Graphics g, int fieldWidth, int fieldHeight, int blockWidth, int blockHeight, int blockArc) { // draw field and blocks on the ground
         for(int i = 0; i < fieldWidth; i++) {
             for(int j = 0; j < fieldHeight; j++) {
-                gameField.drawGamefieldBlock(g, i, j, blockWidth, blockHeight);
+                gameField.drawGamefieldBlock(g, i, j, blockWidth, blockHeight, blockArc);
             }
         }
-        currentShape.shapePaint(g, blockWidth, blockHeight);
+        currentShape.shapePaint(g, blockWidth, blockHeight,blockArc);
     }
     public void repaintField() {
         gameField.repaint();
