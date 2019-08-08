@@ -27,9 +27,11 @@ public class Block {
         return y;
     }
 
-    public void paintBlock(Graphics g, int blockWidth, int blockHeight) {
-        g.setColor(Color.orange);
-        g.fillRect(x * blockWidth, y * blockHeight, blockWidth, blockHeight);
+    public void paintBlock(Graphics g, int blockWidth, int blockHeight, int blockArc) {
+        g.setColor(Color.ORANGE);
+        g.fillRoundRect(x * blockWidth, y * blockHeight, blockWidth, blockHeight, blockArc, blockArc);
+        g.setColor(Color.BLACK);
+        g.drawRoundRect(x * blockWidth, y * blockHeight, blockWidth, blockHeight, blockArc,blockArc);
     }
 
 }

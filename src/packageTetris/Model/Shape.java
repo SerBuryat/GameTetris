@@ -143,9 +143,9 @@ public class Shape {
         createFromShapePattern();
     }
 
-    public void shapePaint(Graphics g,int blockWidth, int blockHeight) {
+    public void shapePaint(Graphics g,int blockWidth, int blockHeight, int blockArc) {
        for(Block block : shapeBlocks)
-           block.paintBlock(g,blockWidth,blockHeight);
+           block.paintBlock(g,blockWidth,blockHeight,blockArc);
     }
 }
 
