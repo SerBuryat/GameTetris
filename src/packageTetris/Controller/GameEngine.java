@@ -2,6 +2,7 @@ package packageTetris.Controller;
 
 import packageTetris.Model.Block;
 import packageTetris.Model.Shape;
+import packageTetris.Model.Sound;
 import packageTetris.View.GameField;
 import packageTetris.View.Messages;
 import packageTetris.View.Score;
@@ -13,16 +14,19 @@ import java.util.Arrays;
 public class GameEngine {
     private static final int SPEED = 500;
     private static Timer timer;
-    private boolean isGameStopped;
 
-    private Window window;
+    private boolean isGameStopped;
+    private int score;
+
+    private int startX; // newShape start coordinates
+    private int startY;
+
+    private Window window; // view components
     private GameField gameField;
     private Score scoreField;
 
-    private int score;
-
-    private int startX;
-    private int startY;
+    Sound gameSound = new Sound("sounds/gameSound.wav");//sound components
+    private Sound gameOverSound = new Sound("sounds/gameOverSound.wav");
 
     private Shape currentShape;
 
@@ -41,12 +45,13 @@ public class GameEngine {
 
         currentShape = new Shape(startX,startY);
         scoreField.setScore(score);
+
+        gameSound.playSound();
     }
 
     public void gameInAction() { // game is in action
         if(isGameStopped) { // check isGameOver
-            timer.stop();
-            setGameOverMessage();
+            gameOver();
         } else {
             if(isTouchGround()) {
                 currentShape.leaveOnTheGround();
@@ -114,14 +119,21 @@ public class GameEngine {
         }
         currentShape.shapePaint(g, blockWidth, blockHeight,blockArc);
     }
-    public void repaintField() {
+    void repaintField() {
         gameField.repaint();
+    }
+
+    private void gameOver() {
+        gameSound.stopSound();
+        gameOverSound.restartSound();
+        timer.stop();
+        setGameOverMessage();
     }
 
     private void setGameOverMessage() {
         Messages.getMessage("Oooops! Game over! " + "\n" + "Your score : " + score + "\n" + "Press ESC to restart game!");
     }
-    public void resetGame() {
+    void resetGame() {
         isGameStopped = true;
         for(int i = 0; i < GameField.FIELD_WIDTH; i++) {
             for(int j = 0; j < GameField.FIELD_HEIGHT; j++) {
@@ -132,22 +144,32 @@ public class GameEngine {
         isGameStopped = false;
         currentShape = new Shape(startX,startY);
         timer.start();
+        gameOverSound.stopSound();
+        gameSound.restartSound();
     }
 
     public static void setGreetingsMessage() {
         Messages.getMessage("Hey, buddy! There is some rules : " + "\n" +
                            "1.RIGHT - move right, LEFT - move left, UP - rotate, DOWN - down (faster)" + "\n" +
                            "2.ESC - reset , P - pause, C - continue " + "\n" +
+                           "3.SPACE - mute/unMute game sound " + "\n" +
                            "Good Luck! :)");
     }
 
-    public void setPause() {
+    void setPause() {
         isGameStopped = true;
         timer.stop();
     }
-    public void setContinue() {
+    void setContinue() {
         isGameStopped = false;
         timer.start();
+    }
+
+    void stopSound() {
+        gameSound.stopSound();
+    }
+    void continueSound() {
+        gameSound.playSound();
     }
 
     private boolean tryMove(int direction) { //-1 left and 1 right
@@ -182,21 +204,21 @@ public class GameEngine {
         return false;
     }// need to fix rotation on floorBlocks, when shape is rotating and and sets in another block
 
-    public void shapeMoveDown() {
+    void shapeMoveDown() {
         if(!isGameStopped) {
             if(!isTouchGround())
                 currentShape.shapeStepDown();
         }
     }
-    public void shapeMoveLeft() { // shape MOVEMENT LEFT
+    void shapeMoveLeft() { // shape MOVEMENT LEFT
         if(tryMove(-1))
             currentShape.shapeStepLeft();
     }
-    public void shapeMoveRight() { // shape MOVEMENT RIGHT
+    void shapeMoveRight() { // shape MOVEMENT RIGHT
         if(tryMove(1))
             currentShape.shapeStepRight();
     }
-    public void shapeRotate() { // shape ROTATION RIGHT
+    void shapeRotate() { // shape ROTATION RIGHT
         if(tryRotate()) {
             if(!isTouchGround())
                 currentShape.rotateShape();
