@@ -1,5 +1,4 @@
-package packageTetris.Model;
-import packageTetris.View.GameField;
+package main.java.packageTetris.Model;
 
 import java.awt.*;
 

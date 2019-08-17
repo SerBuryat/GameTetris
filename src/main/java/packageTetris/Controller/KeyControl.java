@@ -1,4 +1,4 @@
-package packageTetris.Controller;
+package main.java.packageTetris.Controller;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;

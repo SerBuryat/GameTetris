@@ -1,4 +1,4 @@
-package packageTetris.View;
+package main.java.packageTetris.View;
 
 import javax.swing.*;
 import java.awt.*;

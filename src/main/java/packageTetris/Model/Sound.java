@@ -1,4 +1,4 @@
-package packageTetris.Model;
+package main.java.packageTetris.Model;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;

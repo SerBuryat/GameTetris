@@ -1,7 +1,7 @@
-package packageTetris.View;
+package main.java.packageTetris.View;
 
-import packageTetris.Controller.GameEngine;
-import packageTetris.Controller.KeyControl;
+import main.java.packageTetris.Controller.GameEngine;
+import main.java.packageTetris.Controller.KeyControl;
 
 import javax.swing.*;
 import java.awt.*;
