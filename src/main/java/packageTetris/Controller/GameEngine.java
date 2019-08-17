@@ -1,11 +1,11 @@
-package packageTetris.Controller;
+package main.java.packageTetris.Controller;
 
-import packageTetris.Model.Block;
-import packageTetris.Model.Shape;
-import packageTetris.View.GameField;
-import packageTetris.View.Messages;
-import packageTetris.View.Score;
-import packageTetris.View.Window;
+import main.java.packageTetris.Model.Block;
+import main.java.packageTetris.Model.Shape;
+import main.java.packageTetris.View.GameField;
+import main.java.packageTetris.View.Messages;
+import main.java.packageTetris.View.Score;
+import main.java.packageTetris.View.Window;
 import javax.swing.Timer;
 import java.awt.*;
 import java.util.Arrays;

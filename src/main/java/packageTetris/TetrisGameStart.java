@@ -1,6 +1,6 @@
-package packageTetris;
+package main.java.packageTetris;
 
-import packageTetris.Controller.GameEngine;
+import main.java.packageTetris.Controller.GameEngine;
 
 public class TetrisGameStart {
 
