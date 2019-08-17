@@ -40,6 +40,12 @@ public class KeyControl extends KeyAdapter {
             case KeyEvent.VK_C:
                 gameEngine.setContinue();
                 break;
+            case KeyEvent.VK_SPACE:
+                if(gameEngine.gameSound.isRunning)
+                    gameEngine.stopSound();
+                else
+                    gameEngine.continueSound();
+                break;
         }
     }
 }

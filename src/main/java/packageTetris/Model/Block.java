@@ -1,5 +1,4 @@
 package main.java.packageTetris.Model;
-import main.java.packageTetris.View.GameField;
 import java.awt.*;
 
 public class Block {
