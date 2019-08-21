@@ -25,8 +25,8 @@ public class GameEngine {
     private GameField gameField;
     private Score scoreField;
 
-    Sound gameSound = new Sound("sounds/gameSound.wav");//sound components
-    private Sound gameOverSound = new Sound("sounds/gameOverSound.wav");
+    Sound gameSound = new Sound("gameSound.wav");//sound components
+    private Sound gameOverSound = new Sound("gameOverSound.wav");;
 
     private Shape currentShape;
 
